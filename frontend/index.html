@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Recipe Website</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Recipe Website</h1>
+        <div id="statusBar">
+            <span id="statusText">Not logged in</span>
+        </div>
+    </header>
+
+    <main>
+        <!-- AUTH SECTION -->
+        <section class="card" id="authSection">
+            <h2>Authentication</h2>
+
+            <div class="auth-tabs">
+                <button id="tabLogin" class="tab-button active">Login</button>
+                <button id="tabRegister" class="tab-button">Register</button>
+            </div>
+
+            <!-- Login -->
+            <form id="loginForm" class="auth-form">
+                <label>
+                    Email
+                    <input type="email" id="loginEmail" required>
+                </label>
+                <label>
+                    Password
+                    <input type="password" id="loginPassword" required>
+                </label>
+                <button type="submit">Login</button>
+            </form>
+
+            <!-- Register -->
+            <form id="registerForm" class="auth-form hidden">
+                <label>
+                    Email
+                    <input type="email" id="registerEmail" required>
+                </label>
+                <label>
+                    Display Name
+                    <input type="text" id="registerDisplayName" required>
+                </label>
+                <label>
+                    Password
+                    <input type="password" id="registerPassword" required>
+                </label>
+                <button type="submit">Register</button>
+            </form>
+
+            <button id="logoutBtn" class="secondary hidden">Logout</button>
+
+            <div id="authMessage" class="message"></div>
+        </section>
+
+        <!-- RECIPES SECTION -->
+        <section class="card" id="recipesSection">
+            <h2>Recipes</h2>
+
+            <div class="recipe-toolbar">
+                <input type="text" id="searchInput" placeholder="Search recipes...">
+                <button id="searchBtn">Search</button>
+                <button id="refreshRecipesBtn">Refresh</button>
+            </div>
+
+            <div id="recipesList"></div>
+        </section>
+
+        <!-- CREATE RECIPE SECTION (requires login) -->
+        <section class="card" id="createRecipeSection">
+            <h2>Create Recipe (User)</h2>
+            <p class="hint">New recipes are added to an approval queue for admins.</p>
+
+            <form id="createRecipeForm">
+                <label>
+                    Title
+                    <input type="text" id="recipeTitle" required>
+                </label>
+
+                <label>
+                    Short Description
+                    <input type="text" id="recipeShortDescription">
+                </label>
+
+                <label>
+                    Image URL
+                    <input type="url" id="recipeImageUrl">
+                </label>
+
+                <label>
+                    Tags (comma separated)
+                    <input type="text" id="recipeTags" placeholder="Healthy, Dinner">
+                </label>
+
+                <label>
+                    Ingredients (one per line: quantity unit name)
+                    <textarea id="recipeIngredients" rows="4"
+                              placeholder="200 g pasta&#10;1 cup sauce"></textarea>
+                </label>
+
+                <label>
+                    Steps (one per line)
+                    <textarea id="recipeSteps" rows="4"
+                              placeholder="Boil water&#10;Cook pasta&#10;Add sauce"></textarea>
+                </label>
+
+                <button type="submit">Submit Recipe</button>
+            </form>
+
+            <div id="createRecipeMessage" class="message"></div>
+        </section>
+
+        <!-- ADMIN SECTION -->
+        <section class="card hidden" id="adminSection">
+            <h2>Admin Panel</h2>
+            <p class="hint">You are logged in as an admin. You can approve or disable recipes.</p>
+
+            <button id="loadPendingBtn">Load Pending Recipes</button>
+
+            <div id="pendingRecipesList"></div>
+        </section>
+    </main>
+
+    <footer>
+        <small>Recipe Website &mdash; Demo Frontend</small>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
