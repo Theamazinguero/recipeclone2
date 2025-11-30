@@ -5,19 +5,18 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using Recipe_Website.Data;
-using Recipe_Website.Models;
-using Recipe_Website.Services;
+using RecipeBackend.Data;
+using RecipeBackend.Models;
+using RecipeBackend.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// ----------------- CORS (frontend access) -----------------
+// ----------------- CORS -----------------
 builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(policy =>
     {
-        // For development: allow any origin.
-        // You can restrict this later to your actual frontend origin.
+        // For dev: allow any origin. You can restrict this later.
         policy
             .AllowAnyOrigin()
             .AllowAnyHeader()
@@ -98,7 +97,6 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-// Enable CORS before auth
 app.UseCors();
 
 app.UseAuthentication();
