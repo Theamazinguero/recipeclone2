@@ -81,10 +81,19 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// ----------------- SEED ROLES + ADMIN USER -----------------
+// ----------------- AUTO DB CREATE + SEED -----------------
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
+
+    // Get the DbContext
+    var db = services.GetRequiredService<AppDbContext>();
+
+    // Automatically create the database if it doesn't exist
+    // (no need for dotnet ef migrations on dev machines)
+    db.Database.EnsureCreated();
+
+    // Seed roles + admin user
     await SeedData.SeedRolesAndAdminAsync(services, jwtIssuer);
 }
 
