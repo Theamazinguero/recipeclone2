@@ -1,5 +1,8 @@
-// File: Models/MealPlanItem.cs
-namespace RecipeApp.Api.Models
+// Models/MealPlanItem.cs
+
+using System;
+
+namespace RecipeBackend.Models
 {
     public enum MealType
     {
